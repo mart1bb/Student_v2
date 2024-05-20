@@ -1,22 +1,21 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useState } from "react";
+import Login from "./components/LoginPage.js"; // Import the Login component
+import Profil from "./components/Profil.js";
 
 function App() {
-  const [data, setData] = React.useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+  };
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
+        {/* ... other content */}
       </header>
+      {!isLoggedIn && <Login onLoginSuccess={handleLoginSuccess} />}
+      {isLoggedIn && <Profil />}
     </div>
   );
 }

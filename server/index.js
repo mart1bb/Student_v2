@@ -1,16 +1,34 @@
-const express = require("express");
+console.log('Start server');
 
-const PORT = process.env.PORT || 3001;
+const http = require('http');
+const mysql = require('mysql2');
+const handling = require('./handle_request.js');
 
-const app = express();
 
-app.get("/api", (req, res) => {
-    res.json({ message: "Hello from server!" });
+let server = http.createServer();
+var db;
+connectDb();
+
+server.on('request', (req, res) => {
+    handling.handleRequest(req, res, db);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-});
+server.listen(80);
+   
+function connectDb(){
+    db = mysql.createConnection({
+        host     : '127.0.0.1',
+        user     : 'root',
+        password : '6317983S1q2L3,;:=',
+        database : 'user_database',
+        // multipleStatements: true
+    });
 
-
-
+    db.connect((err) => {
+        if(err){
+            console.log('MySQL failed to connect...')
+            console.log(err)
+        }
+        console.log('MySQL connected...');
+    });
+}

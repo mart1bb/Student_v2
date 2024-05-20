@@ -1,0 +1,12 @@
+Fonctionnalités : 
+- upload ses cours 
+- Fiche automatique à partir des cours / reco de cours, liens utiles
+- Agenda partagé
+- Calculer ses moyennes
+- Suivis profil et note
+- Exo à faire
+- Fil d'actualité Association et école
+- Sondage
+- Professeurs absents
+- Salles à disposition
+- Relation d'amis, attacher à une école... 
